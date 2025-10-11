@@ -20,33 +20,16 @@ from datetime import datetime
 
 class TestUserReqister(BaseCase):
     # из урока
-    def setup_method(self):
-        base_part = "learnqa"
-        domain = "example.com"
-        random_part = datetime.now().strftime("%m%d%Y%H%M%S")
-        self.email = f"{base_part}{random_part}@{domain}"
 
     def test_create_user_successfully(self):
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': self.email
-        }
+        data = self.prepare_registration_data()
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
         assert response.status_code == 200, f'unexpected status code {response.status_code}'
         Assertions.assert_json_has_key(response, "id")
 
     def test_create_user_with_existing_email(self):  # проверка на существующий email.
         email = 'vinkotov@example.com'
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': email
-        }
+        data = self.prepare_registration_data(email)
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
         Assertions.assert_code_satus(response, 400)
         assert response.content.decode(
@@ -55,13 +38,7 @@ class TestUserReqister(BaseCase):
     #  Создание пользователя с некорректным email - без символа @
     def test_create_user_with_incorrect_email(self):  # проверка на существующий email.
         email = 'vinkotov'
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': email
-        }
+        data = self.prepare_registration_data(email)
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
         assert response.status_code == 400, f'unexpected status code {response.status_code}'
@@ -78,14 +55,7 @@ class TestUserReqister(BaseCase):
         'email'
     ])
     def test_create_user_with_empty_field(self, fields_empty):  # проверка на существующий email.
-
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': self.email
-        }
+        data = self.prepare_registration_data()
         del data[fields_empty]
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
         assert response.status_code == 400, f'unexpected status code {response.status_code}'
@@ -101,14 +71,8 @@ class TestUserReqister(BaseCase):
         ('lastName')
     ])
     def test_create_user_with_name_one_symbol(self, name_one_symbol):
+        data = self.prepare_registration_data()
 
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': self.email
-        }
         data[name_one_symbol] = self.name_one_symbol_value
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
         assert response.status_code == 400, f'unexpected status code {response.status_code}'
@@ -124,14 +88,7 @@ class TestUserReqister(BaseCase):
         'lastName',
     ])
     def test_create_user_with_name_long(self, name):
-
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': self.email
-        }
+        data = self.prepare_registration_data()
         data[name] = self.long_string
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
