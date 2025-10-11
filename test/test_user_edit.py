@@ -113,6 +113,7 @@ class TestUserEdit(BaseCase):
                                  cookies={"auth_sid": auth_sid_1},
                                  data={"firstName": new_name}
                                  )
+
         # GET
         response6 = requests.get(f"https://playground.learnqa.ru/api/user/{user_id_1}",
                                  headers={"x-csrf-token": token_1},
