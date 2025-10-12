@@ -1,5 +1,7 @@
 import requests
 
+from lib.logger import Logger
+
 
 class MyRequests():
     @staticmethod
@@ -21,11 +23,13 @@ class MyRequests():
     @staticmethod
     def _send(url: str, data: dict, headers: dict, cookies: dict,
               method: str):  # типа приватная функция внутри класса начинается с _
-        url = f"https://playground.learnqa.ru/api/{url}"  # api?
+        url = f"https://playground.learnqa.ru/api{url}"  # api?
         if headers is None:
             headers = {}
         if cookies is None:
             cookies = {}
+
+        Logger.add_request(url, data, headers, cookies, method)
 
         if method == 'GET':  # выбор метода с которого будет запущен тест
             response = requests.get(url, params=data, headers=headers, cookies=cookies)
@@ -40,4 +44,8 @@ class MyRequests():
             response = requests.delete(url, data=data, headers=headers, cookies=cookies)
         else:
             raise Exception(f"Bad HTTP method '{method}' was received")
+
+        Logger.add_response(response)
+
         return response
+
