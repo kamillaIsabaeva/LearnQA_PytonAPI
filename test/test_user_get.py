@@ -7,19 +7,14 @@ Ex16: Запрос данных другого пользователя
 В этой задаче нужно написать тест, который авторизовывается одним пользователем, но получает данные другого (т.е. с другим ID).
 И убедиться, что в этом случае запрос также получает только username, так как мы не должны видеть остальные данные чужого пользователя.
 """
-import requests
-import pytest
-import random
-import string
 
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
-from datetime import datetime
-
+from lib.my_requests import MyRequests
 
 class TestUserGet(BaseCase):
     def test_get_user_details_not_auth(self):  # неавторизованный пользователь
-        response = requests.get("https://playground.learnqa.ru/api/user/2")
+        response = MyRequests.get("/user/2")
         Assertions.assert_json_has_key(response, "username")
         Assertions.assert_json_has_not_key(response, "email")
         Assertions.assert_json_has_not_key(response, "firstName")
@@ -30,12 +25,12 @@ class TestUserGet(BaseCase):
             'password': '1234',
             'email': 'vinkotov@example.com'
         }
-        response1 = requests.post("https://playground.learnqa.ru/api/user/login", data=data)
+        response1 = MyRequests.post("/user/login", data=data)
         auth_sid = self.get_cookie(response1, "auth_sid")
         token = self.get_header(response1, "x-csrf-token")
         user_id_from_auth_method = self.get_json_value(response1, "user_id")
 
-        response2 = requests.get(f"https://playground.learnqa.ru/api/user/{user_id_from_auth_method}",
+        response2 = MyRequests.get(f"/user/{user_id_from_auth_method}",
                                  headers={"x-csrf-token": token},
                                  cookies={"auth_sid": auth_sid}
                                  )
@@ -48,12 +43,12 @@ class TestUserGet(BaseCase):
             'password': '1234',
             'email': 'vinkotov@example.com'
         }
-        response1 = requests.post("https://playground.learnqa.ru/api/user/login", data=data)
+        response1 = MyRequests.post("/user/login", data=data)
         auth_sid = self.get_cookie(response1, "auth_sid")
         token = self.get_header(response1, "x-csrf-token")
         user_id_from_auth_method = ((self.get_json_value(response1, "user_id")) + 1)
 
-        response2 = requests.get(f"https://playground.learnqa.ru/api/user/{user_id_from_auth_method}",
+        response2 = MyRequests.get(f"/user/{user_id_from_auth_method}",
                                  headers={"x-csrf-token": token},
                                  cookies={"auth_sid": auth_sid}
                                  )

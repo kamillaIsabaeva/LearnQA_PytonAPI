@@ -9,28 +9,26 @@ Ex15: Тесты на метод user
 - Создание пользователя с очень длинным именем - длиннее 250 символов
 """
 
-import requests
 import pytest
 import random
 import string
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
-from datetime import datetime
-
+from lib.my_requests import MyRequests
 
 class TestUserReqister(BaseCase):
     # из урока
 
     def test_create_user_successfully(self):
         data = self.prepare_registration_data()
-        response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
+        response = MyRequests.post("/user/", data=data)
         assert response.status_code == 200, f'unexpected status code {response.status_code}'
         Assertions.assert_json_has_key(response, "id")
 
     def test_create_user_with_existing_email(self):  # проверка на существующий email.
         email = 'vinkotov@example.com'
         data = self.prepare_registration_data(email)
-        response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
+        response = MyRequests.post("/user/", data=data)
         Assertions.assert_code_status(response, 400)
         assert response.content.decode(
             "utf-8") == f"Users with email '{email}' already exists", f"unexpected response content {response.content}"
@@ -39,7 +37,7 @@ class TestUserReqister(BaseCase):
     def test_create_user_with_incorrect_email(self):  # проверка на существующий email.
         email = 'vinkotov'
         data = self.prepare_registration_data(email)
-        response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
+        response = MyRequests.post("/user/", data=data)
 
         assert response.status_code == 400, f'unexpected status code {response.status_code}'
         assert response.content.decode(
@@ -57,7 +55,7 @@ class TestUserReqister(BaseCase):
     def test_create_user_with_empty_field(self, fields_empty):  # проверка на существующий email.
         data = self.prepare_registration_data()
         del data[fields_empty]
-        response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
+        response = MyRequests.post("/user/", data=data)
         assert response.status_code == 400, f'unexpected status code {response.status_code}'
         assert response.content.decode(
             "utf-8") == f"The following required params are missed: {fields_empty}", f"unexpected response content {response.content}"
@@ -74,7 +72,7 @@ class TestUserReqister(BaseCase):
         data = self.prepare_registration_data()
 
         data[name_one_symbol] = self.name_one_symbol_value
-        response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
+        response = MyRequests.post("/user/", data=data)
         assert response.status_code == 400, f'unexpected status code {response.status_code}'
         assert response.content.decode(
             "utf-8") == f"The value of '{name_one_symbol}' field is too short", f"unexpected response content {response.content}"
@@ -90,7 +88,7 @@ class TestUserReqister(BaseCase):
     def test_create_user_with_name_long(self, name):
         data = self.prepare_registration_data()
         data[name] = self.long_string
-        response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
+        response = MyRequests.post("/user/", data=data)
 
         assert response.status_code == 400, f'unexpected status code {response.status_code}'
         assert response.content.decode(
