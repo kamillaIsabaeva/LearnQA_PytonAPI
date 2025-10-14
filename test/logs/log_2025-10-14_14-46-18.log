@@ -1,0 +1,84 @@
+
+-----
+Test: test_user_auth.py::TestUserAuth24::test_user_auth24 (setup)
+Time: 2025-10-14 14:46:18.358338
+Request method: POST
+Request URL: https://playground.learnqa.ru/api/user/login
+Request data: {'email': 'vinkotov@example.com', 'password': '1234'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"user_id":2}Response headers: {'Date': 'Tue, 14 Oct 2025 11:46:18 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Set-Cookie': 'auth_sid=7f3c45c8a661cb44145a81054a81b99902e94918f1549272bcf2cafc2634fd9d', 'x-csrf-token': 'bd836326a9c930ac61f4d756ba831a8387a1e48302e94918f1549272bcf2cafc2634fd9d', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 11:46:18 GMT'}
+Response cookies: {'auth_sid': '7f3c45c8a661cb44145a81054a81b99902e94918f1549272bcf2cafc2634fd9d'}
+
+-----
+
+-----
+Test: test_user_auth.py::TestUserAuth24::test_user_auth24 (call)
+Time: 2025-10-14 14:46:18.955133
+Request method: GET
+Request URL: https://playground.learnqa.ru/api/user/auth
+Request data: None
+Request headers: {'x-csrf-token': 'bd836326a9c930ac61f4d756ba831a8387a1e48302e94918f1549272bcf2cafc2634fd9d'}
+Request cookies: {'auth_sid': '7f3c45c8a661cb44145a81054a81b99902e94918f1549272bcf2cafc2634fd9d'}
+
+Response code: 200Response text: {"user_id":2}Response headers: {'Date': 'Tue, 14 Oct 2025 11:46:19 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 11:46:19 GMT'}
+Response cookies: {}
+
+-----
+
+-----
+Test: test_user_auth.py::TestUserAuth24::test_negative_auth_check[no_cookie] (setup)
+Time: 2025-10-14 14:46:19.651900
+Request method: POST
+Request URL: https://playground.learnqa.ru/api/user/login
+Request data: {'email': 'vinkotov@example.com', 'password': '1234'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"user_id":2}Response headers: {'Date': 'Tue, 14 Oct 2025 11:46:20 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Set-Cookie': 'auth_sid=bd10a7aac9966f4a1baee22f786a370402e94918f1549272bcf2cafc2634fd9d', 'x-csrf-token': 'b64f7fd9bacea11ea0c00bab3b0bf724de7f5ad702e94918f1549272bcf2cafc2634fd9d', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 11:46:20 GMT'}
+Response cookies: {'auth_sid': 'bd10a7aac9966f4a1baee22f786a370402e94918f1549272bcf2cafc2634fd9d'}
+
+-----
+
+-----
+Test: test_user_auth.py::TestUserAuth24::test_negative_auth_check[no_cookie] (call)
+Time: 2025-10-14 14:46:20.219104
+Request method: GET
+Request URL: https://playground.learnqa.ru/api/user/auth
+Request data: None
+Request headers: {'x-csrf-token': 'b64f7fd9bacea11ea0c00bab3b0bf724de7f5ad702e94918f1549272bcf2cafc2634fd9d'}
+Request cookies: {}
+
+Response code: 200Response text: {"user_id":0}Response headers: {'Date': 'Tue, 14 Oct 2025 11:46:20 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 11:46:20 GMT'}
+Response cookies: {}
+
+-----
+
+-----
+Test: test_user_auth.py::TestUserAuth24::test_negative_auth_check[no_token] (setup)
+Time: 2025-10-14 14:46:20.910957
+Request method: POST
+Request URL: https://playground.learnqa.ru/api/user/login
+Request data: {'email': 'vinkotov@example.com', 'password': '1234'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"user_id":2}Response headers: {'Date': 'Tue, 14 Oct 2025 11:46:21 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Set-Cookie': 'auth_sid=65433481066e8362eb41aab6dca6ce1e02e94918f1549272bcf2cafc2634fd9d', 'x-csrf-token': '8a4e500053a32dc9c4a64614c687ec625f18585a02e94918f1549272bcf2cafc2634fd9d', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 11:46:21 GMT'}
+Response cookies: {'auth_sid': '65433481066e8362eb41aab6dca6ce1e02e94918f1549272bcf2cafc2634fd9d'}
+
+-----
+
+-----
+Test: test_user_auth.py::TestUserAuth24::test_negative_auth_check[no_token] (call)
+Time: 2025-10-14 14:46:21.395750
+Request method: GET
+Request URL: https://playground.learnqa.ru/api/user/auth
+Request data: None
+Request headers: {}
+Request cookies: {'auth_sid': '65433481066e8362eb41aab6dca6ce1e02e94918f1549272bcf2cafc2634fd9d'}
+
+Response code: 200Response text: {"user_id":0}Response headers: {'Date': 'Tue, 14 Oct 2025 11:46:22 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 11:46:21 GMT'}
+Response cookies: {}
+
+-----

@@ -11,7 +11,11 @@
 import pytest
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
+
 from lib.my_requests import MyRequests
+import allure
+
+@allure.epic("Authorization cases")
 
 
 class TestUserAuth24(BaseCase):
@@ -33,6 +37,7 @@ class TestUserAuth24(BaseCase):
         self.user_id_from_auth_method = self.get_json_value(response1, "user_id")
         # в ответе присутствует нужный хедер, нужный куки, id пользователя
 
+    @allure.description("This tets successfully user by email and password")
     def test_user_auth24(self):
 
         #  передаем нужный нам токен и куки
@@ -46,7 +51,7 @@ class TestUserAuth24(BaseCase):
             self.user_id_from_auth_method,
             "User id from auth method is not equal to user id from check method"
         )
-
+    @allure.description("This test checks authorization status without sending auth cookie or token ")
     # Негативный тест на авторизацию урок 25
     @pytest.mark.parametrize('condition', exclude_params)
     def test_negative_auth_check(self, condition):
