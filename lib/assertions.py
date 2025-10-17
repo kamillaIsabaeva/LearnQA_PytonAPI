@@ -17,6 +17,7 @@ class Assertions:
     def assert_json_has_key(response: Response,
                             name):  # проверяет, что JSON содержит указанное поле
         try:
+
             response_as_dict = response.json()
         except json.JSONDecodeError:
             assert False, f"Response is not in Json Format. Response text is '{response.text}'"

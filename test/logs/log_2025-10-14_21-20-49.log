@@ -1,0 +1,132 @@
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_user_id_2 (call)
+Time: 2025-10-14 21:20:49.889071
+Request method: POST
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/login
+Request data: {'email': 'vinkotov@example.com', 'password': '1234'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"user_id":2}Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:51 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Set-Cookie': 'auth_sid=09f293e3d455617211f54cd8eeec065d02e94918f1549272bcf2cafc2634fd9d', 'x-csrf-token': '10427597a578a23ff73e6d34334cfccb42a7bbe102e94918f1549272bcf2cafc2634fd9d', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 18:20:51 GMT'}
+Response cookies: {'auth_sid': '09f293e3d455617211f54cd8eeec065d02e94918f1549272bcf2cafc2634fd9d'}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_user_id_2 (call)
+Time: 2025-10-14 21:20:50.403427
+Request method: DELETE
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/2
+Request data: None
+Request headers: {'x-csrf-token': '10427597a578a23ff73e6d34334cfccb42a7bbe102e94918f1549272bcf2cafc2634fd9d'}
+Request cookies: {'auth_sid': '09f293e3d455617211f54cd8eeec065d02e94918f1549272bcf2cafc2634fd9d'}
+
+Response code: 404Response text: int(2)
+This is 404 error!
+<a href='/'>Home</a>Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:51 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Vary': 'Accept-Encoding', 'Server': 'Apache', 'Content-Encoding': 'gzip'}
+Response cookies: {}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_created_user_and_check_deletion (call)
+Time: 2025-10-14 21:20:50.973045
+Request method: POST
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/
+Request data: {'password': '123', 'username': 'learnqa', 'firstName': 'learnqa', 'lastName': 'learnqa', 'email': 'learnqa10142025212050@example.com'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"id":"141749"}Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:52 GMT', 'Content-Type': 'application/json', 'Content-Length': '15', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 18:20:52 GMT'}
+Response cookies: {}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_created_user_and_check_deletion (call)
+Time: 2025-10-14 21:20:51.920515
+Request method: POST
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/login
+Request data: {'email': 'learnqa10142025212050@example.com', 'password': '123'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"user_id":141749}Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:53 GMT', 'Content-Type': 'application/json', 'Content-Length': '18', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Set-Cookie': 'auth_sid=d80924b1599fa6ba21649da1a72e3d7a8ee4c64590168b70872c171edef0765c', 'x-csrf-token': '1a01f65c30e3e82ec55ece2adc3e7f4f05afc3ed8ee4c64590168b70872c171edef0765c', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 18:20:53 GMT'}
+Response cookies: {'auth_sid': 'd80924b1599fa6ba21649da1a72e3d7a8ee4c64590168b70872c171edef0765c'}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_created_user_and_check_deletion (call)
+Time: 2025-10-14 21:20:52.397291
+Request method: DELETE
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/141749
+Request data: None
+Request headers: {'x-csrf-token': '1a01f65c30e3e82ec55ece2adc3e7f4f05afc3ed8ee4c64590168b70872c171edef0765c'}
+Request cookies: {'auth_sid': 'd80924b1599fa6ba21649da1a72e3d7a8ee4c64590168b70872c171edef0765c'}
+
+Response code: 404Response text: int(2)
+This is 404 error!
+<a href='/'>Home</a>Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:53 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Vary': 'Accept-Encoding', 'Server': 'Apache', 'Content-Encoding': 'gzip'}
+Response cookies: {}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_user_other_auth (call)
+Time: 2025-10-14 21:20:52.899941
+Request method: POST
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/
+Request data: {'password': '123', 'username': 'learnqa', 'firstName': 'learnqa', 'lastName': 'learnqa', 'email': 'learnqa10142025212052@example.com'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"id":"141750"}Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:54 GMT', 'Content-Type': 'application/json', 'Content-Length': '15', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 18:20:54 GMT'}
+Response cookies: {}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_user_other_auth (call)
+Time: 2025-10-14 21:20:53.863739
+Request method: POST
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/
+Request data: {'password': '123', 'username': 'learnqa', 'firstName': 'learnqa', 'lastName': 'learnqa', 'email': 'learnqa10142025212053@example.com'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"id":"141751"}Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:55 GMT', 'Content-Type': 'application/json', 'Content-Length': '15', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 18:20:55 GMT'}
+Response cookies: {}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_user_other_auth (call)
+Time: 2025-10-14 21:20:54.853307
+Request method: POST
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/login
+Request data: {'email': 'learnqa10142025212052@example.com', 'password': '123'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200Response text: {"user_id":141750}Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:56 GMT', 'Content-Type': 'application/json', 'Content-Length': '18', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Set-Cookie': 'auth_sid=cd2672b05620cbbef9614e1aeb3b0b63e49f2b2bb90a0ac7f6c79cb133877f94', 'x-csrf-token': '604901851f6879cff44be830da37352a164b1750e49f2b2bb90a0ac7f6c79cb133877f94', 'Cache-Control': 'max-age=0', 'Expires': 'Tue, 14 Oct 2025 18:20:56 GMT'}
+Response cookies: {'auth_sid': 'cd2672b05620cbbef9614e1aeb3b0b63e49f2b2bb90a0ac7f6c79cb133877f94'}
+
+-----
+
+-----
+Test: test_user_delete.py::TestUserDelete::test_delete_user_other_auth (call)
+Time: 2025-10-14 21:20:55.336293
+Request method: GET
+Request URL: https://playground.learnqa.ru/ajax/api_dev/user/141750
+Request data: None
+Request headers: {'x-csrf-token': '604901851f6879cff44be830da37352a164b1750e49f2b2bb90a0ac7f6c79cb133877f94'}
+Request cookies: {'auth_sid': 'cd2672b05620cbbef9614e1aeb3b0b63e49f2b2bb90a0ac7f6c79cb133877f94'}
+
+Response code: 404Response text: int(2)
+This is 404 error!
+<a href='/'>Home</a>Response headers: {'Date': 'Tue, 14 Oct 2025 18:20:56 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Vary': 'Accept-Encoding', 'Server': 'Apache', 'Content-Encoding': 'gzip'}
+Response cookies: {}
+
+-----

@@ -16,8 +16,6 @@ from lib.my_requests import MyRequests
 import allure
 
 @allure.epic("Authorization cases")
-
-
 class TestUserAuth24(BaseCase):
     exclude_params = [
         ("no_cookie"),
@@ -51,6 +49,7 @@ class TestUserAuth24(BaseCase):
             self.user_id_from_auth_method,
             "User id from auth method is not equal to user id from check method"
         )
+
     @allure.description("This test checks authorization status without sending auth cookie or token ")
     # Негативный тест на авторизацию урок 25
     @pytest.mark.parametrize('condition', exclude_params)
