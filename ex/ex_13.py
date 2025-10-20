@@ -69,7 +69,7 @@ def test_user_agent_check(User_Agent_data):
     for expected_data in ['platform', 'browser', 'device']:
         actual_value = response_json.get(expected_data)
         expected_value = expected[expected_data]
-        print (actual_value, expected_value)
+        print(actual_value, expected_value)
 
         if actual_value != expected_value:
             incorrect_user_agents.append({

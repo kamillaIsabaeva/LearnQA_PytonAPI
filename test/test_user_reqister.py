@@ -15,16 +15,20 @@ import string
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
 from lib.my_requests import MyRequests
+import allure
+
+@allure.epic("User Registration")
 
 class TestUserReqister(BaseCase):
     # из урока
-
+    @allure.description("This tets successfully created user ")
     def test_create_user_successfully(self):
         data = self.prepare_registration_data()
         response = MyRequests.post("/user/", data=data)
         assert response.status_code == 200, f'unexpected status code {response.status_code}'
         Assertions.assert_json_has_key(response, "id")
 
+    @allure.description("This tets  created user with existing email ")
     def test_create_user_with_existing_email(self):  # проверка на существующий email.
         email = 'vinkotov@example.com'
         data = self.prepare_registration_data(email)

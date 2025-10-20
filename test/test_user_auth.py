@@ -14,8 +14,9 @@ from lib.assertions import Assertions
 
 from lib.my_requests import MyRequests
 import allure
-
+@allure.label("owner", "Kamilla")
 @allure.epic("Authorization cases")
+@allure.id("1")
 class TestUserAuth24(BaseCase):
     exclude_params = [
         ("no_cookie"),
@@ -36,6 +37,8 @@ class TestUserAuth24(BaseCase):
         # в ответе присутствует нужный хедер, нужный куки, id пользователя
 
     @allure.description("This tets successfully user by email and password")
+    @allure.story("positive")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_user_auth24(self):
 
         #  передаем нужный нам токен и куки
@@ -51,6 +54,8 @@ class TestUserAuth24(BaseCase):
         )
 
     @allure.description("This test checks authorization status without sending auth cookie or token ")
+    @allure.story("negative")
+    @allure.severity(allure.severity_level.CRITICAL)
     # Негативный тест на авторизацию урок 25
     @pytest.mark.parametrize('condition', exclude_params)
     def test_negative_auth_check(self, condition):
