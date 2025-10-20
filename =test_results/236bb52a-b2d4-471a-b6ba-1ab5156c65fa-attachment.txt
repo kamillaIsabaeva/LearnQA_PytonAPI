@@ -1,1 +1,0 @@
-test_edit_user_name_one_symbol: learnqa, learnqa
